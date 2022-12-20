@@ -1,8 +1,11 @@
 package org.example.coding;
 
+import org.example.coding.practice.Practice;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Practice practice = new Practice();
+
     }
 
 //        int[] nums = {8, 6, 3, 5, 9, 1};

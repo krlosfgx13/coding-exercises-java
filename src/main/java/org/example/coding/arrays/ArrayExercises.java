@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ArrayExercises {
 
-    public static int[] twoSum(int[] nums, int target) throws Exception {
+    public int[] twoSum(int[] nums, int target) throws Exception {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
@@ -15,7 +15,7 @@ public class ArrayExercises {
         return null;
     }
 
-    public static int[] twoSum2(int[] nums, int target) {
+    public int[] twoSum2(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target - nums[i])) {
@@ -26,7 +26,7 @@ public class ArrayExercises {
         return null;
     }
 
-    private static boolean isIntPalindrome(int x) {
+    private boolean isIntPalindrome(int x) {
         String value = String.valueOf(x);
         char[] arr = new char[value.length()];
         char[] chars = value.toCharArray();
@@ -46,7 +46,7 @@ public class ArrayExercises {
         return false;
     }
 
-    private static boolean isIntPalindrome2(int x) {
+    private boolean isIntPalindrome2(int x) {
         Integer number = new Integer(x);
         String str = number.toString();
         char charInt[] = str.toCharArray();
@@ -62,20 +62,7 @@ public class ArrayExercises {
         return Arrays.equals(palindrome, charInt);
     }
 
-    private static boolean isPalindrome3(int x) {
-        if (x < 0) {
-            return false;
-        }
-        int num = x;
-        int reversed = 0;
-        while (num != 0) {
-            reversed = reversed * 10 + num % 10;
-            num /= 10;
-        }
-        return x == reversed;
-    }
-
-    private static int[] findErrorNums(int[] nums) {
+    private int[] findErrorNums(int[] nums) {
         //input: 1,2,2,4
         //output: 2,3
         int[] output = new int[2];
@@ -88,7 +75,7 @@ public class ArrayExercises {
         return output;
     }
 
-    private static int[] findErrorNumbers(int[] nums) {
+    private int[] findErrorNumbers(int[] nums) {
         int dup = -1, missing = -1;
         for (int i = 1; i <= nums.length; i++) {
             int count = 0;
@@ -104,7 +91,7 @@ public class ArrayExercises {
         return new int[]{dup, missing};
     }
 
-    private static int[] findErrorNumbersSorting(int[] nums) {
+    private int[] findErrorNumbersSorting(int[] nums) {
         Arrays.sort(nums);
         int dup = -1, missing = 1;
         for (int i = 1; i < nums.length; i++) {
@@ -116,7 +103,7 @@ public class ArrayExercises {
         return new int[]{dup, nums[nums.length - 1] != nums.length ? nums.length : missing};
     }
 
-    private static int[] findDuplicates(int[] input) {
+    private int[] findDuplicates(int[] input) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
             for (int j = i + 1; j < input.length; j++) {
@@ -131,7 +118,7 @@ public class ArrayExercises {
         return output;
     }
 
-    private static int[] filterDuplicates(int[] input) {
+    private int[] filterDuplicates(int[] input) {
         //input   5,8,4,2,4,1,8
         //output: 5,8,4,2,1
         Set<Integer> set = new HashSet<>();
@@ -146,7 +133,7 @@ public class ArrayExercises {
         return array;
     }
 
-    public static int removeDuplicates(int[] nums) {
+    public int removeDuplicates(int[] nums) {
         int insertIndex = 1;
         for (int i = 1; i < nums.length; i++) {
             // We skip to next index if we see a duplicate element
@@ -160,7 +147,7 @@ public class ArrayExercises {
         return insertIndex;
     }
 
-    private static int countWordsArray(String input) {
+    private int countWordsArray(String input) {
         String pattern = "[^a-zA-Z0-9\\s]";
         input = input.replaceAll(pattern, "");
         input = input.replaceAll("\\s+", " ");

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ObjectOrientedProgExercises {
 
-    private static void calculateAgeAndSort() {
+    private void calculateAgeAndSort() {
         //accurately calculate age: https://www.javatpoint.com/java-calculate-age
         List<Person> persons = new ArrayList<>();
         Person p1 = new Person("Carlos", "Gonzalez", LocalDate.of(1997, 12, 13));

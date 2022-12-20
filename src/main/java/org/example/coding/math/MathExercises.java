@@ -2,7 +2,20 @@ package org.example.coding.math;
 
 public class MathExercises {
 
-    private static int firstFactorial(int num) {
+    private boolean isPalindrome3(int x) {
+        if (x < 0) {
+            return false;
+        }
+        int num = x;
+        int reversed = 0;
+        while (num != 0) {
+            reversed = reversed * 10 + num % 10;
+            num /= 10;
+        }
+        return x == reversed;
+    }
+
+    private int firstFactorial(int num) {
         int result = num;
         for (int i = num; i > 1; i--) {
             result = result * (i - 1);
@@ -10,7 +23,7 @@ public class MathExercises {
         return result;
     }
 
-    public static int FirstFactorial(int num) {
+    public int FirstFactorial(int num) {
         if (num != 1) {
             return num*FirstFactorial(num - 1);
         }
@@ -18,7 +31,7 @@ public class MathExercises {
     }
 
 
-    private static int pairSumSequence(int n) {
+    private int pairSumSequence(int n) {
         int sum = 0;
         for (int i = 0; i < n; i++) {
             sum += pairSum(i, i + 1);
@@ -26,11 +39,11 @@ public class MathExercises {
         return sum;
     }
 
-    private static int pairSum(int a, int b) {
+    private int pairSum(int a, int b) {
         return a + b;
     }
 
-    private static int countPrimes(int n) {
+    private int countPrimes(int n) {
         int count = 1;
         boolean isNotPrime = false;
         // Check if number is less than
