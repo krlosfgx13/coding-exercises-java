@@ -1,10 +1,12 @@
 package org.example.coding;
 
+import org.example.coding.examples.CodeExamples;
 import org.example.coding.practice.Practice;
 
 public class Main {
     public static void main(String[] args) {
         Practice practice = new Practice();
+        CodeExamples c = new CodeExamples();
 
     }
 

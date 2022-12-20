@@ -26,7 +26,7 @@ public class ArrayExercises {
         return null;
     }
 
-    private boolean isIntPalindrome(int x) {
+    public boolean isIntPalindrome(int x) {
         String value = String.valueOf(x);
         char[] arr = new char[value.length()];
         char[] chars = value.toCharArray();
@@ -46,7 +46,7 @@ public class ArrayExercises {
         return false;
     }
 
-    private boolean isIntPalindrome2(int x) {
+    public boolean isIntPalindrome2(int x) {
         Integer number = new Integer(x);
         String str = number.toString();
         char charInt[] = str.toCharArray();
@@ -62,7 +62,7 @@ public class ArrayExercises {
         return Arrays.equals(palindrome, charInt);
     }
 
-    private int[] findErrorNums(int[] nums) {
+    public int[] findErrorNums(int[] nums) {
         //input: 1,2,2,4
         //output: 2,3
         int[] output = new int[2];
@@ -75,7 +75,7 @@ public class ArrayExercises {
         return output;
     }
 
-    private int[] findErrorNumbers(int[] nums) {
+    public int[] findErrorNumbers(int[] nums) {
         int dup = -1, missing = -1;
         for (int i = 1; i <= nums.length; i++) {
             int count = 0;
@@ -91,7 +91,7 @@ public class ArrayExercises {
         return new int[]{dup, missing};
     }
 
-    private int[] findErrorNumbersSorting(int[] nums) {
+    public int[] findErrorNumbersSorting(int[] nums) {
         Arrays.sort(nums);
         int dup = -1, missing = 1;
         for (int i = 1; i < nums.length; i++) {
@@ -103,7 +103,7 @@ public class ArrayExercises {
         return new int[]{dup, nums[nums.length - 1] != nums.length ? nums.length : missing};
     }
 
-    private int[] findDuplicates(int[] input) {
+    public int[] findDuplicates(int[] input) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input.length; i++) {
             for (int j = i + 1; j < input.length; j++) {
@@ -118,7 +118,7 @@ public class ArrayExercises {
         return output;
     }
 
-    private int[] filterDuplicates(int[] input) {
+    public int[] filterDuplicates(int[] input) {
         //input   5,8,4,2,4,1,8
         //output: 5,8,4,2,1
         Set<Integer> set = new HashSet<>();
@@ -147,7 +147,7 @@ public class ArrayExercises {
         return insertIndex;
     }
 
-    private int countWordsArray(String input) {
+    public int countWordsArray(String input) {
         String pattern = "[^a-zA-Z0-9\\s]";
         input = input.replaceAll(pattern, "");
         input = input.replaceAll("\\s+", " ");
