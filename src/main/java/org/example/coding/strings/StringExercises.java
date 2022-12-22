@@ -4,7 +4,7 @@ import java.util.*;
 
 public class StringExercises {
 
-    private HashMap<String, Integer> countWords2(String input) {
+    public HashMap<String, Integer> countWords2(String input) {
         String pattern = "[^a-zA-Z0-9\\s]";
         input = input.replaceAll(pattern, "");
         input = input.replaceAll("\\s+", " ");
@@ -20,7 +20,7 @@ public class StringExercises {
         return map;
     }
 
-    private HashMap<String, Integer> countWords(String input) {
+    public HashMap<String, Integer> countWords(String input) {
         //input: Sunjay works at TELUS. TELUS is a telco company. (It is a good place to work.)
         String regex = "[^a-zA-Z0-9\\s]";
         int counter = 1;
@@ -41,7 +41,7 @@ public class StringExercises {
         return map;
     }
 
-    private Map<Character, Integer> findDuplicateCharacters3(String input) {
+    public Map<Character, Integer> findDuplicateCharacters3(String input) {
         char[] chars = input.toCharArray();
         Map<Character, Integer> map = new HashMap<Character, Integer>();
         for (char aChar : chars) {
@@ -54,7 +54,7 @@ public class StringExercises {
         return map;
     }
 
-    private Map<Character, Integer> findDuplicateCharacters2(String input) {
+    public Map<Character, Integer> findDuplicateCharacters2(String input) {
         Map<Character, Integer> map = new HashMap<>();
         int count = 1;
         char[] chars = input.toCharArray();
@@ -72,7 +72,7 @@ public class StringExercises {
         return map;
     }
 
-    private boolean checkIfPangram(String sentence) {
+    public boolean checkIfPangram(String sentence) {
         sentence = sentence.trim();
         sentence = sentence.replace(" ", "");
         char[] chars = sentence.toCharArray();
@@ -88,7 +88,7 @@ public class StringExercises {
         return map.size() == 26;
     }
 
-    private boolean checkIfPangram2(String sentence) {
+    public boolean checkIfPangram2(String sentence) {
         sentence = sentence.trim();
         sentence = sentence.replace(" ", "");
         char[] chars = sentence.toCharArray();
@@ -104,7 +104,7 @@ public class StringExercises {
         return list.size() == 26;
     }
 
-    private boolean checkIfPangram3(String sentence) {
+    public boolean checkIfPangram3(String sentence) {
         Set<Character> set = new HashSet<>();
         for (char c : sentence.toCharArray()) {
             set.add(c);
@@ -112,7 +112,7 @@ public class StringExercises {
         return set.size() == 26;
     }
 
-    private String longestCommonPrefix(String[] strs) {
+    public String longestCommonPrefix(String[] strs) {
         if (strs.length == 0) return "";
         String prefix = strs[0]; //prefix is the whole first letter.
         for (int i = 1; i < strs.length; i++)  //iterates three times over the array of strings.
@@ -123,7 +123,7 @@ public class StringExercises {
         return prefix;
     }
 
-    private boolean validParenthesis(String input) {
+    public boolean validParenthesis(String input) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < input.length(); i++) {
             switch (input.charAt(i)) {
@@ -152,7 +152,7 @@ public class StringExercises {
         return stack.isEmpty();
     }
 
-    private boolean validParentheses(String s) {
+    public boolean validParentheses(String s) {
         if (s.length() % 2 == 1) {
             return false;
         }
@@ -175,7 +175,7 @@ public class StringExercises {
         return stack.isEmpty();
     }
 
-    private int romanToInteger2(String s) {
+    public int romanToInteger2(String s) {
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         map.put('I', 1);
         map.put('V', 5);
@@ -197,7 +197,7 @@ public class StringExercises {
         return total;
     }
 
-    private int romanToInteger(String str) {
+    public int romanToInteger(String str) {
         Map<Character, Integer> map = new HashMap<>();
         map.put('I', 1);
         map.put('V', 5);
@@ -255,7 +255,7 @@ public class StringExercises {
         return counter;
     }
 
-    private int countWords(String input, String word) {
+    public int countWords(String input, String word) {
         int count = 0;
         String[] arr = input.split(" ");
         for (int i = 0; i < arr.length; i++) {
@@ -265,7 +265,7 @@ public class StringExercises {
         return count;
     }
 
-    private long countSpecificWordsStream(String input, String word) {
+    public long countSpecificWordsStream(String input, String word) {
         if ((Objects.nonNull(word) && !(" ").equals(word)) && (Objects.nonNull(input) && !(" ").equals(input))) {
             String[] sArray = input.split(" ");
             long l = Arrays.stream(sArray).filter(d -> d.equals(word)).count();
@@ -277,7 +277,7 @@ public class StringExercises {
         }
     }
 
-    private int countWordsWNoMethod(String input) {
+    public int countWordsWNoMethod(String input) {
         String pattern = "[^a-zA-Z0-9\\s]";
         input = input.replaceAll(pattern, "");
         input = input.replaceAll("\\s+", " ");
@@ -292,7 +292,7 @@ public class StringExercises {
         return counter;
     }
 
-    private int countWordsWNoMethod2(String input) {
+    public int countWordsWNoMethod2(String input) {
         if (input == null || input.isEmpty()) {
             return 0;
         }
@@ -316,7 +316,7 @@ public class StringExercises {
     }
 
 
-    private List<Character> findDuplicateChars(String input) {
+    public List<Character> findDuplicateChars(String input) {
         char[] chars = input.toCharArray();
         Map<Character, Integer> map = new HashMap<Character, Integer>();
         for (char aChar : chars) {
@@ -409,7 +409,7 @@ public class StringExercises {
         return count;
     }
 
-    private int countEqualStrings(String a, String b) {
+    public int countEqualStrings(String a, String b) {
         // Java program to print the number of times
         // str2 can be formed from str1 using the
         // characters of str1 only once
@@ -460,7 +460,7 @@ public class StringExercises {
         return -1;
     }
 
-    private int firstUniqueChar(String input) {
+    public int firstUniqueChar(String input) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < input.length(); i++) {
             if (map.containsKey(input.charAt(i))) {
@@ -479,7 +479,7 @@ public class StringExercises {
     }
 
 
-    private char findFirstNonRepeatedChar(String input) {
+    public char findFirstNonRepeatedChar(String input) {
         //O(2*n)
         //O(n^2)
         Map<Character, Integer> map = new LinkedHashMap<>();
@@ -519,7 +519,7 @@ public class StringExercises {
     }
 
 
-    private boolean checkIfStringsAreAnagram(String s1, String s2) {
+    public boolean checkIfStringsAreAnagram(String s1, String s2) {
         boolean flag = false;
         Map<Character, Integer> map = new HashMap<>();
         if (s1.length() != s2.length()) {

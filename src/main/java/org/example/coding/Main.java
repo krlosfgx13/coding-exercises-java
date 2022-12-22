@@ -1,13 +1,20 @@
 package org.example.coding;
 
+import org.example.coding.arrays.ArrayExercises;
 import org.example.coding.examples.CodeExamples;
 import org.example.coding.practice.Practice;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
+        String input = "the quick brown fox jumps over the lazy dog";
         Practice practice = new Practice();
-        CodeExamples c = new CodeExamples();
-
+        ArrayExercises arrayEx = new ArrayExercises();
+        CodeExamples examples = new CodeExamples();
+        System.out.println(practice.checkIfSentenceIsPangram(input));
     }
 
 //        int[] nums = {8, 6, 3, 5, 9, 1};

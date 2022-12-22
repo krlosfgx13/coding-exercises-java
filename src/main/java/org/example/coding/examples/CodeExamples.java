@@ -9,81 +9,81 @@ import java.util.stream.Collectors;
 
 public class CodeExamples {
 
-    private void findLettersAlphabet() {
+    public void findLettersAlphabet() {
         for (int i = 0; i < 26; i++) {
             System.out.println((char) ('a' + i));
         }
     }
 
-    private void testIndexes() {
+    public void testIndexes() {
         int[] arr = {8, 4, 9, 7, 6, 5, 3, 2};
         for (int i = 1; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
     }
 
-    private int countWordsTokenizer(String input) {
+    public int countWordsTokenizer(String input) {
         int count = 0;
         StringTokenizer tokenizer = new StringTokenizer(input);
         return tokenizer.countTokens();
     }
 
-    private void arraysTimeComplexity(){
-        int[] arr = {5,4,2};
-        for(int i=0; i<arr.length; i++){
-            for(int j = 0; j<arr.length; j++){ //j=0 -> 9. since values are traversed for each value since index 0.
+    public void arraysTimeComplexity() {
+        int[] arr = {5, 4, 2};
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) { //j=0 -> 9. since values are traversed for each value since index 0.
                 System.out.println("Hi."); //output = 9.
             }
         }
     }
 
-    private void arraysTimeComplexity2(){
-        int[] arr = {5,4,2};
-        for(int i=0; i<arr.length; i++){
-            for(int j = 0; j<arr.length; j++){ //j=1 -> 3. since values are traversed for each value since index 1.
+    public void arraysTimeComplexity2() {
+        int[] arr = {5, 4, 2};
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) { //j=1 -> 3. since values are traversed for each value since index 1.
                 System.out.println("Hi."); //output = 9. Line is printed once per every execution.
             }
         }
     }
 
-    private void arraysTimeComplexity3(){
-        int[] arr = {5,4,2};
-        int[] arr2 = {2,6};
-        for(int i=0; i<arr.length; i++){
-            for(int j = 0; j<arr2.length; j++){
+    public void arraysTimeComplexity3() {
+        int[] arr = {5, 4, 2};
+        int[] arr2 = {2, 6};
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
                 System.out.println("Hi."); //output = 9.
             }
         }
     }
 
-    private void arraysTimeComplexity4(){
-        int[] arr = {5,4,2};
-        int[] arr2 = {2,6};
-        for(int i=0; i<arr.length; i++){
-            for(int j = 0; j<arr2.length; j++){
-                for(int k = 0; k<4; k++){
+    public void arraysTimeComplexity4() {
+        int[] arr = {5, 4, 2};
+        int[] arr2 = {2, 6};
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                for (int k = 0; k < 4; k++) {
                     System.out.println("Hi."); //output = 24.
                 }
             }
         }
     }
 
-    private void measureExecutionTimeArrays(int[] arr){
+    public void measureExecutionTimeArrays(int[] arr) {
         long startTime = System.currentTimeMillis();
         int sum = 0;
-        for(int i=0; i<arr.length; i++){
-            for(int j=i+1; j<arr.length; j++){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 System.out.println(arr[i] + "," + arr[j]);
             }
         }
         System.out.println("Time elapsed: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
-    private void measureExecutionTimeArrays2(int[] arr, int[] arr2){
+    public void measureExecutionTimeArrays2(int[] arr, int[] arr2) {
         long startTime = System.currentTimeMillis();
-        for(int i=0; i<arr.length; i++){
-            for(int j=0; j<arr.length; j++){
-                if(arr[i] < arr2[j]){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i] < arr2[j]) {
                     System.out.println(arr[i] + "," + arr[j]);
                 }
             }
@@ -91,30 +91,30 @@ public class CodeExamples {
         System.out.println("Time elapsed: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
-    private void compareStringOptions(){
+    public void compareStringOptions() {
         long startTime = System.currentTimeMillis();
         StringBuffer sb = new StringBuffer("Java");
-        for (int i=0; i<10000; i++){
+        for (int i = 0; i < 10000; i++) {
             sb.append("Tpoint");
         }
         System.out.println("Time taken by StringBuffer: " + (System.currentTimeMillis() - startTime) + "ms");
         startTime = System.currentTimeMillis();
 
         StringBuilder sb2 = new StringBuilder("Java");
-        for (int i=0; i<10000; i++){
+        for (int i = 0; i < 10000; i++) {
             sb2.append("Tpoint");
         }
         System.out.println("Time taken by StringBuilder: " + (System.currentTimeMillis() - startTime) + "ms");
         startTime = System.currentTimeMillis();
 
         String s = "";
-        for (int i=0; i<10000; i++){
+        for (int i = 0; i < 10000; i++) {
             s += "Tpoint";
         }
         System.out.println("Time taken by String: " + (System.currentTimeMillis() - startTime) + "ms");
     }
 
-    private List<String> removeDuplicatesFromListLambda(){
+    public List<String> removeDuplicatesFromListLambda() {
         List<String> list = new ArrayList<>();
         list.add("USA");
         list.add("Canada");
@@ -125,7 +125,7 @@ public class CodeExamples {
         return list.stream().distinct().collect(Collectors.toList());
     }
 
-    private ArrayList<String> removeDuplicatesFromList(){
+    public ArrayList<String> removeDuplicatesFromList() {
         List<String> list = new ArrayList<>();
         list.add("USA");
         list.add("Canada");
@@ -137,7 +137,7 @@ public class CodeExamples {
         return new ArrayList<>(set);
     }
 
-    private Integer[] hashMapToArray(){
+    public Integer[] hashMapToArray() {
         HashMap<Integer, String> map = new HashMap<>();
         map.put(1, "one");
         map.put(2, "two");
@@ -149,7 +149,7 @@ public class CodeExamples {
         return map.keySet().toArray(new Integer[0]);
     }
 
-    private String[] hashMapToArray2(){
+    public String[] hashMapToArray2() {
         HashMap<Integer, String> map = new HashMap<>();
         map.put(1, "one");
         map.put(2, "two");
@@ -161,7 +161,7 @@ public class CodeExamples {
         return map.values().toArray(new String[0]);
     }
 
-    private int[] convertListToArray(){
+    public int[] convertListToArray() {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(8);
@@ -170,10 +170,10 @@ public class CodeExamples {
         list.add(134);
         list.add(19);
 
-        return list.stream().mapToInt(i->i).toArray();
+        return list.stream().mapToInt(i -> i).toArray();
     }
 
-    private int[] convertListToArray2(int[] input) {
+    public int[] convertListToArray2(int[] input) {
         List<Integer> list = new ArrayList<>();
         list.add(4);
         list.add(6);
@@ -186,7 +186,7 @@ public class CodeExamples {
         return output;
     }
 
-    private void calculateAgeAndSort() {
+    public void calculateAgeAndSort() {
         //accurately calculate age: https://www.javatpoint.com/java-calculate-age
         List<Person> persons = new ArrayList<>();
         Person p1 = new Person("Carlos", "Gonzalez", LocalDate.of(1997, 12, 13));
@@ -221,7 +221,7 @@ public class CodeExamples {
         * */
     }
 
-    private void streamFilterExample(){
+    public void streamFilterExample() {
         List<Person> persons = new ArrayList<>();
         Person p1 = new Person("Carlos", "Gonzalez", LocalDate.of(1997, 8, 13));
         Person p2 = new Person("Juan", "Perez", LocalDate.of(1994, 4, 1));
@@ -237,19 +237,19 @@ public class CodeExamples {
         p4.setAge(LocalDate.now().getYear() - p4.getBirthDate().getYear());
 
         List<Person> adults = persons.stream().filter((Person per) -> per.getAge() > 21).collect(Collectors.toList());
-        for(Person p : adults){
+        for (Person p : adults) {
             System.out.println(p.getLastName() + ", " + p.getFirstName() + ", " + p.getAge());
         }
     }
 
-    private void exampleTokenizer(String sentence){
+    public void exampleTokenizer(String sentence) {
         StringTokenizer tokenizer = new StringTokenizer(sentence);
-        while(tokenizer.hasMoreTokens()){
+        while (tokenizer.hasMoreTokens()) {
             System.out.println(tokenizer.nextToken());
         }
     }
 
-    private void removeBlankSpaces(String input){
+    public void removeBlankSpaces(String input) {
         String text = "Hello    there this is   a test";
         String pattern = "\\s+";
         String text2 = text.replaceAll(pattern, " ");
@@ -260,7 +260,7 @@ public class CodeExamples {
         //Use replaceAll() if you want to use a regular expression pattern.
     }
 
-    private void getOrDefaultHashMap(){
+    public void getOrDefaultHashMap() {
         Map<String, Integer> map = new HashMap<>();
         map.put("a", 10);
         map.put("b", 20);
@@ -276,7 +276,7 @@ public class CodeExamples {
         System.out.println(map);
     }
 
-    private void hashMapVsLinkedHashMap(){
+    public void hashMapVsLinkedHashMap() {
         Map<String, Integer> map = new HashMap<>();
         map.put("a", 10);
         map.put("b", 20);
@@ -290,16 +290,16 @@ public class CodeExamples {
 
     }
 
-    private void evenOrOddNumbers(int limit){
+    public void evenOrOddNumbers(int limit) {
         limit = 100;
-        for(int i=0; i<limit; i++){
-            if(i % 2 == 0){ //i % 2 != 0 for odd numbers.
+        for (int i = 0; i < limit; i++) {
+            if (i % 2 == 0) { //i % 2 != 0 for odd numbers.
                 System.out.println(i);
             }
         }
     }
 
-    private boolean isPrime(int x) {
+    public boolean isPrime(int x) {
         int n = 7;
         int count = 0;
         // Check if number is less than
@@ -324,12 +324,11 @@ public class CodeExamples {
     }
 
 
-
     public class Person implements Comparable<ObjectOrientedProgExercises.Person> {
-        private String firstName;
-        private String lastName;
-        private LocalDate birthDate;
-        private Integer age;
+        public String firstName;
+        public String lastName;
+        public LocalDate birthDate;
+        public Integer age;
 
         public Person(String firstName, String lastName, LocalDate birthDate) {
             this.firstName = firstName;
