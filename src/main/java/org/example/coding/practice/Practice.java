@@ -155,10 +155,10 @@ public class Practice {
         input = input.replaceAll("\\s+", " ");
         String[] str = input.split(" ");
         Map<String, Integer> map = new LinkedHashMap<>();
-        for(String s : str){
-            if(map.containsKey(s)){
+        for (String s : str) {
+            if (map.containsKey(s)) {
                 map.put(s, map.get(s) + 1);
-            }else{
+            } else {
                 map.put(s, 1);
             }
         }
@@ -176,25 +176,115 @@ public class Practice {
 
     //Time Complexity: O(n)
     //Space complexity: O(1) at most there are 26 chars, no more.
-    public boolean checkIfSentenceIsPangram(String input){
+    public boolean checkIfSentenceIsPangram(String input) {
         String pattern = "[^a-zA-Z0-9]";
         input = input.replaceAll(pattern, "");
         input = input.toLowerCase();
         Set<Character> set = new HashSet<>();
         char[] chars = input.toCharArray();
-        for(char c : chars){
+        for (char c : chars) {
             set.add(c);
         }
         return set.size() == 26;
     }
 
-    public boolean isPalindrome(String input){
-        String pattern = "[^a-zA-Z0-9\\s]";
+    //Time complexity: O(n).
+    //Space complexity: O(n) since we need additional space to store the reversed string.
+    public boolean isPalindrome(String input) {
+        String pattern = "[^a-zA-Z0-9]";
         input = input.replaceAll(pattern, "");
-        StringBuffer sb = new StringBuffer();
-        for(int i = input.length() - 1; i>=0; i--){
+        input = input.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for (int i = input.length() - 1; i >= 0; i--) {
             sb.append(input.charAt(i));
         }
         return sb.toString().equals(input);
+    }
+
+    public boolean isPalindromeV2(String input) {
+        String pattern = "[^a-zA-Z0-9]";
+        input = input.replaceAll(pattern, "").toLowerCase();
+        StringBuilder sb = new StringBuilder(input).reverse();
+        return sb.toString().equals(input);
+    }
+
+    //Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+    public boolean isPalindromeString(int left, int right, String s) {
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    //Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+    public boolean validPalindromeWord(String s) {
+        //ex: abc d cba -> true
+        //ex: abc de cba -> true
+        //ex: abc def cba -> false
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right && s.charAt(left) == s.charAt(right)) {
+            left++;
+            right--;
+        }
+        return isPalindromeString(left + 1, right, s) || isPalindromeString(left, right - 1, s);
+    }
+
+    public boolean validParentheses(String input) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < input.length(); i++) {
+            switch (input.charAt(i)) {
+                case '[':
+                case '(':
+                case '{':
+                    stack.push(input.charAt(i));
+                    break;
+
+                case ']':
+                    if (stack.isEmpty() || stack.pop() != '[')
+                        return false;
+                    break;
+
+                case ')':
+                    if (stack.isEmpty() || stack.pop() != '(')
+                        return false;
+                    break;
+
+                case '}':
+                    if (stack.isEmpty() || stack.pop() != '{')
+                        return false;
+                    break;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+            } else {
+                map.put(s.charAt(i), 1);
+            }
+        }
+        for (int i = 0; i < t.length(); i++) {
+            if (map.containsKey(t.charAt(i))) {
+                map.put(t.charAt(i), map.get(t.charAt(i)) - 1);
+                if (map.get(t.charAt(i)) == 0) {
+                    map.remove(t.charAt(i));
+                }
+            } else {
+                return false;
+            }
+        }
+        return map.size()==0;
     }
 }

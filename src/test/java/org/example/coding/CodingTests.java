@@ -18,30 +18,30 @@ public class CodingTests {
     Practice practice = new Practice();
 
     @Test
-    public void testTwoSum(){
-        Assert.assertArrayEquals(new int[]{0, 1}, practice.twoSum(new int[]{2,7,11,15}, 9));
-        Assert.assertArrayEquals(new int[]{1, 2}, practice.twoSum(new int[]{3,2,4}, 6));
-        Assert.assertArrayEquals(new int[]{0, 1}, practice.twoSum(new int[]{3,3}, 6));
+    public void testTwoSum() {
+        Assert.assertArrayEquals(new int[]{0, 1}, practice.twoSum(new int[]{2, 7, 11, 15}, 9));
+        Assert.assertArrayEquals(new int[]{1, 2}, practice.twoSum(new int[]{3, 2, 4}, 6));
+        Assert.assertArrayEquals(new int[]{0, 1}, practice.twoSum(new int[]{3, 3}, 6));
     }
 
     @Test
-    public void testFindErrorNums(){
-        Assert.assertArrayEquals(new int[]{2,1}, practice.findErrorNumbers(new int[]{3,2,2}));
-        Assert.assertArrayEquals(new int[]{2,1}, practice.findErrorNumbers(new int[]{2,2}));
-        Assert.assertArrayEquals(new int[]{2,3}, practice.findErrorNumbers(new int[]{1,2,2,4}));
-        Assert.assertArrayEquals(new int[]{1,2}, practice.findErrorNumbers(new int[]{1,1}));
+    public void testFindErrorNums() {
+        Assert.assertArrayEquals(new int[]{2, 1}, practice.findErrorNumbers(new int[]{3, 2, 2}));
+        Assert.assertArrayEquals(new int[]{2, 1}, practice.findErrorNumbers(new int[]{2, 2}));
+        Assert.assertArrayEquals(new int[]{2, 3}, practice.findErrorNumbers(new int[]{1, 2, 2, 4}));
+        Assert.assertArrayEquals(new int[]{1, 2}, practice.findErrorNumbers(new int[]{1, 1}));
     }
 
     @Test
-    public void testFindDuplicates(){
-        Assert.assertArrayEquals(new int[]{0}, practice.findDuplicates(new int[]{0,0,0,1}));
-        Assert.assertArrayEquals(new int[]{}, practice.findDuplicates(new int[]{1,2,3,4,5}));
-        Assert.assertArrayEquals(new int[]{2,4,8}, practice.findDuplicates(new int[]{2,2,800,4,8,8,1,8,4,0}));
-        Assert.assertArrayEquals(new int[]{1}, practice.findDuplicates(new int[]{1,1,1,1,1,11,0}));
+    public void testFindDuplicates() {
+        Assert.assertArrayEquals(new int[]{0}, practice.findDuplicates(new int[]{0, 0, 0, 1}));
+        Assert.assertArrayEquals(new int[]{}, practice.findDuplicates(new int[]{1, 2, 3, 4, 5}));
+        Assert.assertArrayEquals(new int[]{2, 4, 8}, practice.findDuplicates(new int[]{2, 2, 800, 4, 8, 8, 1, 8, 4, 0}));
+        Assert.assertArrayEquals(new int[]{1}, practice.findDuplicates(new int[]{1, 1, 1, 1, 1, 11, 0}));
     }
 
     @Test
-    public void testCountWordsArray(){
+    public void testCountWordsArray() {
         Assert.assertEquals(5, practice.countWordsArray("Hola como estas tu hoy"));
         Assert.assertEquals(0, practice.countWordsArray("           "));
         Assert.assertEquals(2, practice.countWordsArray("Hola           mundo"));
@@ -82,7 +82,7 @@ public class CodingTests {
     }
 
     @Test
-    public void testCountWordOccurrences(){
+    public void testCountWordOccurrences() {
         String input = "Sunjay works at TELUS. TELUS is a telco company. TELUS is a good place to work.";
         Map<String, Integer> map = new LinkedHashMap<>();
         map.put("Sunjay", 1);
@@ -102,9 +102,43 @@ public class CodingTests {
     }
 
     @Test
-    public void testCheckIfSentenceIsPangram(){
+    public void testCheckIfSentenceIsPangram() {
         Assert.assertTrue(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydog"));
         Assert.assertFalse(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydo"));
         Assert.assertTrue(practice.checkIfSentenceIsPangram("the quick brown fox jumps over the lazy dog"));
+    }
+
+    @Test
+    public void testIsPalindrome() {
+        Assert.assertTrue(practice.isPalindromeV2("A man, a plan, a canal: Panama"));
+        Assert.assertFalse(practice.isPalindromeV2("race a car"));
+        Assert.assertTrue(practice.isPalindromeV2(" "));
+        Assert.assertTrue(practice.isPalindromeV2("Mr. Owl ate my metal worm"));
+        Assert.assertTrue(practice.isPalindromeV2("Was it a car or a cat I saw"));
+    }
+
+    @Test
+    public void testValidPalindrome() {
+        Assert.assertTrue(practice.validPalindromeWord("abccba"));
+        Assert.assertTrue(practice.validPalindromeWord("abcdcba"));
+        Assert.assertTrue(practice.validPalindromeWord("abcdecba"));
+        Assert.assertTrue(practice.validPalindromeWord("cbbcc"));
+        Assert.assertTrue(practice.validPalindromeWord("ccbbc"));
+    }
+
+    @Test
+    public void testValidParentheses() {
+        Assert.assertTrue(practice.validParentheses("{[[()]]}"));
+        Assert.assertFalse(practice.validParentheses("{"));
+        Assert.assertTrue(practice.validParentheses("{[]}"));
+        Assert.assertTrue(practice.validParentheses("{[()]}"));
+        Assert.assertFalse(practice.validParentheses("{[}]"));
+        Assert.assertFalse(practice.validParentheses("{]"));
+    }
+
+    @Test
+    public void testIsAnagram(){
+        Assert.assertTrue(practice.isAnagram("anagram", "nagaram"));
+
     }
 }

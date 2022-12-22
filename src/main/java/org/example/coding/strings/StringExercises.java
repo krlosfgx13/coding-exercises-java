@@ -519,28 +519,29 @@ public class StringExercises {
     }
 
 
-    public boolean checkIfStringsAreAnagram(String s1, String s2) {
-        boolean flag = false;
-        Map<Character, Integer> map = new HashMap<>();
-        if (s1.length() != s2.length()) {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
             return false;
         }
-
-        for (int i = 0; i < s2.length(); i++) {
-            if (map.containsKey(s2.charAt(i))) {
-                map.put(s2.charAt(i), map.get(s2.charAt(i)) + 1);
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
             } else {
-                map.put(s2.charAt(i), 1);
+                map.put(s.charAt(i), 1);
             }
         }
-
-        for (int i = 0; i < s1.length(); i++) {
-            if (map.containsKey(s1.charAt(i)))
-                flag = true;
-            else
+        for (int i = 0; i < t.length(); i++) {
+            if (map.containsKey(t.charAt(i))) {
+                map.put(t.charAt(i), map.get(t.charAt(i)) - 1);
+                if (map.get(t.charAt(i)) == 0) {
+                    map.remove(t.charAt(i));
+                }
+            } else {
                 return false;
+            }
         }
-        return flag;
+        return map.size()==0;
     }
 
     public boolean iAnagram(String word, String anagram) {
