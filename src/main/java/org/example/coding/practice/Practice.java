@@ -287,4 +287,78 @@ public class Practice {
         }
         return map.size()==0;
     }
+
+    //Time complexity: O(logn)
+    //Space complexity: O(1)
+    public boolean isAnagramV2(String s, String t){
+        char[] c1 = s.toCharArray();
+        char[] c2 = t.toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        return Arrays.equals(c1, c2);
+    }
+
+    public static int seatingStudents(int[] arr) {
+        int totalDesks = arr[0]; //defines the number of desks.
+        Set<Integer> occupiedDesks = new HashSet<>(); //store occupied desks..
+        for (int i = 1; i < arr.length; i++) {
+            occupiedDesks.add(arr[i]); //occupy desks.
+        }
+        System.out.println("totalDesks: " + totalDesks);
+        System.out.println("occupiedDesks: " + occupiedDesks);
+        int count = 0;
+        for (int currentDesk = 1; currentDesk < totalDesks; currentDesk++) {
+            if (isOccupied(currentDesk, occupiedDesks, totalDesks)) {
+                continue;
+            }
+            if (currentDesk % 2 != 0) {
+                int sideDesk = currentDesk + 1;
+                if (!isOccupied(sideDesk, occupiedDesks, totalDesks)) {
+                    count++;
+                }
+            }
+            int belowDesk = currentDesk + 2;
+            if (!isOccupied(belowDesk, occupiedDesks, totalDesks)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static boolean isOccupied(int desk, Set<Integer> occupiedDesks, int totalDesks) {
+        return desk > totalDesks || occupiedDesks.contains(desk);
+    }
+
+    //Prime checker exercise:
+    public static int PrimeChecker(int num) {
+        List<Integer> perms = getPermutations("", String.valueOf(num), new ArrayList<Integer>());
+        for (int perm : perms) {
+            if (isPrime(perm)) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public static boolean isPrime(int num) {
+        if (num %2 == 0) return false;
+
+        for (int i = 3; i * i <= num; i += 2) {
+            if (num % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static List<Integer> getPermutations(String begStr, String endStr, List<Integer> perms) {
+        if (endStr.length() <= 1) {
+            perms.add(Integer.parseInt(begStr + endStr));
+        } else {
+            for (int i = 0; i < endStr.length(); i++) {
+                String newString = endStr.substring(0, i) + endStr.substring(i + 1);
+                getPermutations(begStr + endStr.charAt(i), newString, perms);
+            }
+        }
+        return perms;
+    }
 }

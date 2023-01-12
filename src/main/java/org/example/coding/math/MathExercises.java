@@ -43,30 +43,13 @@ public class MathExercises {
         return a + b;
     }
 
-    public int countPrimes(int n) {
-        int count = 1;
-        boolean isNotPrime = false;
-        // Check if number is less than
-        // equal to 1
-        if (n <= 1)
-            return 0;
+    public static boolean isPrime(int num) {
+        if (num %2 == 0) return false;
 
-            // Check if number is 2
-        else if (n == 2)
-            return 0;
-
-        // If not, then just check the odds
-        for (int i = 3; i < n; i += 2) {
-            for (int j = 3; j <= Math.sqrt(i); j += 2) {
-                if (i % j != 0) {
-                    count++;
-                } else {
-                    isNotPrime = true;
-                }
-            }
-            if (!isNotPrime)
-                count++;
+        for (int i = 3; i * i <= num; i += 2) {
+            if (num % i == 0)
+                return false;
         }
-        return count;
+        return true;
     }
 }
