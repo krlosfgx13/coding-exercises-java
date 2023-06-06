@@ -8,6 +8,7 @@ import org.hamcrest.collection.IsMapContaining;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -42,10 +43,10 @@ public class CodingTests {
 
     @Test
     public void testCountWordsArray() {
-        Assert.assertEquals(5, practice.countWordsArray("Hola como estas tu hoy"));
-        Assert.assertEquals(0, practice.countWordsArray("           "));
-        Assert.assertEquals(2, practice.countWordsArray("Hola           mundo"));
-        Assert.assertEquals(0, practice.countWordsArray("!@#$#@$@$@#$@#$@#$@@#$@#$      "));
+        assertEquals(5, practice.countWordsArray("Hola como estas tu hoy"));
+        assertEquals(0, practice.countWordsArray("           "));
+        assertEquals(2, practice.countWordsArray("Hola           mundo"));
+        assertEquals(0, practice.countWordsArray("!@#$#@$@$@#$@#$@#$@@#$@#$      "));
     }
 
     @Test
@@ -98,47 +99,81 @@ public class CodingTests {
         map.put("telco", 1);
         map.put("company", 1);
 
-        Assert.assertEquals(map, practice.countWordOccurrences(input));
+        assertEquals(map, practice.countWordOccurrences(input));
     }
 
     @Test
     public void testCheckIfSentenceIsPangram() {
-        Assert.assertTrue(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydog"));
-        Assert.assertFalse(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydo"));
-        Assert.assertTrue(practice.checkIfSentenceIsPangram("the quick brown fox jumps over the lazy dog"));
+        assertTrue(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydog"));
+        assertFalse(practice.checkIfSentenceIsPangram("thequickbrownfoxjumpsoverthelazydo"));
+        assertTrue(practice.checkIfSentenceIsPangram("the quick brown fox jumps over the lazy dog"));
     }
 
     @Test
     public void testIsPalindrome() {
-        Assert.assertTrue(practice.isPalindromeV2("A man, a plan, a canal: Panama"));
-        Assert.assertFalse(practice.isPalindromeV2("race a car"));
-        Assert.assertTrue(practice.isPalindromeV2(" "));
-        Assert.assertTrue(practice.isPalindromeV2("Mr. Owl ate my metal worm"));
-        Assert.assertTrue(practice.isPalindromeV2("Was it a car or a cat I saw"));
+        assertTrue(practice.isPalindromeV2("A man, a plan, a canal: Panama"));
+        assertFalse(practice.isPalindromeV2("race a car"));
+        assertTrue(practice.isPalindromeV2(" "));
+        assertTrue(practice.isPalindromeV2("Mr. Owl ate my metal worm"));
+        assertTrue(practice.isPalindromeV2("Was it a car or a cat I saw"));
     }
 
     @Test
     public void testValidPalindrome() {
-        Assert.assertTrue(practice.validPalindromeWord("abccba"));
-        Assert.assertTrue(practice.validPalindromeWord("abcdcba"));
-        Assert.assertTrue(practice.validPalindromeWord("abcdecba"));
-        Assert.assertTrue(practice.validPalindromeWord("cbbcc"));
-        Assert.assertTrue(practice.validPalindromeWord("ccbbc"));
+        assertTrue(practice.validPalindromeWord("abccba"));
+        assertTrue(practice.validPalindromeWord("abcdcba"));
+        assertTrue(practice.validPalindromeWord("abcdecba"));
+        assertTrue(practice.validPalindromeWord("cbbcc"));
+        assertTrue(practice.validPalindromeWord("ccbbc"));
     }
 
     @Test
     public void testValidParentheses() {
-        Assert.assertTrue(practice.validParentheses("{[[()]]}"));
-        Assert.assertFalse(practice.validParentheses("{"));
-        Assert.assertTrue(practice.validParentheses("{[]}"));
-        Assert.assertTrue(practice.validParentheses("{[()]}"));
-        Assert.assertFalse(practice.validParentheses("{[}]"));
-        Assert.assertFalse(practice.validParentheses("{]"));
+        assertTrue(practice.validParentheses("{[[()]]}"));
+        assertFalse(practice.validParentheses("{"));
+        assertTrue(practice.validParentheses("{[]}"));
+        assertTrue(practice.validParentheses("{[()]}"));
+        assertFalse(practice.validParentheses("{[}]"));
+        assertFalse(practice.validParentheses("{]"));
+    }
+
+    @Test
+    public void testValidParentheses2() {
+        assertTrue(practice.validParentheses2("{[[()]]}"));
+        assertFalse(practice.validParentheses2("{"));
+        assertTrue(practice.validParentheses2("{[]}"));
+        assertTrue(practice.validParentheses2("{[()]}"));
+        assertFalse(practice.validParentheses2("{[}]"));
+        assertFalse(practice.validParentheses2("{]"));
     }
 
     @Test
     public void testIsAnagram(){
-        Assert.assertTrue(practice.isAnagram("anagram", "nagaram"));
+        assertTrue(practice.isAnagram("anagram", "nagaram"));
+        assertTrue(practice.isAnagram("word", "wrdo"));
+        assertTrue(practice.isAnagram("mary", "army"));
+        assertTrue(practice.isAnagram("stop", "tops"));
+        assertTrue(practice.isAnagram("boat", "btoa"));
+        assertFalse(practice.isAnagram("pure", "in"));
+        assertFalse(practice.isAnagram("fill", "fil"));
+        assertFalse(practice.isAnagram("b", "bbb"));
+        assertFalse(practice.isAnagram("ccc", "ccccccc"));
+        assertTrue(practice.isAnagram("a", "a"));
+        assertFalse(practice.isAnagram("sleep", "slep"));
+    }
+
+    @Test
+    public void testFirstUniqueCharacter(){
+        assertEquals('b', practice.firstNonRepeatedCharacter("abcdefghija"));
+        assertEquals('h', practice.firstNonRepeatedCharacter("hello"));
+        assertEquals('J', practice.firstNonRepeatedCharacter("Java"));
+        assertEquals('i', practice.firstNonRepeatedCharacter("simplest"));
+        assertEquals('e', practice.firstNonRepeatedCharacter("aabbccdde"));
+        assertEquals('d', practice.firstNonRepeatedCharacter("abcabcd"));
+    }
+
+    @Test
+    public void testCountEqualStrings(){
 
     }
 }

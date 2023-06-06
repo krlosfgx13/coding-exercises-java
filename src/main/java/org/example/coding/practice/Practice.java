@@ -263,6 +263,41 @@ public class Practice {
         return stack.isEmpty();
     }
 
+    public boolean validParentheses2(String s){
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i<s.length(); i++){
+            switch (s.charAt(i)){
+                case '(':
+                case '[':
+                case '{':
+                    stack.push(s.charAt(i));
+                    break;
+
+                case ')':
+                    if(!stack.isEmpty() && stack.peek() == '(')
+                        stack.pop();
+                    else
+                        return false;
+                    break;
+
+                case ']':
+                    if(!stack.isEmpty() && stack.peek() == '[')
+                        stack.pop();
+                    else
+                        return false;
+                    break;
+
+                case '}':
+                    if(!stack.isEmpty() && stack.peek() == '{')
+                        stack.pop();
+                    else
+                        return false;
+                    break;
+            }
+        }
+        return stack.isEmpty();
+    }
+
     public boolean isAnagram(String s, String t) {
         if (s.length() != t.length()) {
             return false;
@@ -360,5 +395,19 @@ public class Practice {
             }
         }
         return perms;
+    }
+
+    public char firstNonRepeatedCharacter(String s){
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for(Character c : s.toCharArray()){
+            map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
+        }
+
+        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+            if(entry.getValue() == 1){
+                return entry.getKey();
+            }
+        }
+        return '\0';
     }
 }

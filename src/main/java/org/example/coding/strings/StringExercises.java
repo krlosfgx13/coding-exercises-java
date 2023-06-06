@@ -409,6 +409,27 @@ public class StringExercises {
         return count;
     }
 
+    static boolean canMakeStr2(String str1, String str2)
+    {
+        // Create a count array and count frequencies
+        // characters in str1.
+        int[] count = new int[Integer.MAX_VALUE];
+        char []str3 = str1.toCharArray();
+        for (int i = 0; i < str3.length; i++)
+            count[str3[i]]++;
+
+        // Now traverse through str2 to check
+        // if every character has enough counts
+
+        char []str4 = str2.toCharArray();
+        for (int i = 0; i < str4.length; i++) {
+            if (count[str4[i]] == 0)
+                return false;
+            count[str4[i]]--;
+        }
+        return true;
+    }
+
     public int countEqualStrings(String a, String b) {
         // Java program to print the number of times
         // str2 can be formed from str1 using the
