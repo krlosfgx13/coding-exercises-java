@@ -3,6 +3,51 @@ package org.example.coding.hackerrank;
 import java.util.*;
 
 public class HackerRank {
+
+    public static void plusMinus(List<Integer> arr) {
+        // Write your code here
+        float greater=0;
+        float less=0;
+        float zero=0;
+        for(int i : arr){
+            if(i > 0){
+                greater++;
+            }else if(i < 0){
+                less++;
+            }else if(i == 0){
+                zero++;
+            }
+        }
+        //float result = greater/arr.size();
+        System.out.printf("%.6f \n", greater/arr.size());
+        System.out.printf("%.6f \n", less/arr.size());
+        System.out.printf("%.6f \n", zero/arr.size());
+    }
+
+    public static void miniMaxSum(List<Integer> arr) {
+        // Write your code here
+        long min = Long.MAX_VALUE;
+        long max = Long.MIN_VALUE;
+        long sum = 0;
+        int index = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            for(int j=0; j<arr.size(); j++){
+                if (index != j) {
+                    sum += arr.get(j);
+                }
+            }
+            if(sum < min){
+                min = sum;
+            }
+            if(sum > max){
+                max = sum;
+            }
+            sum = 0;
+            index++;
+        }
+        System.out.println(min + " " + max);
+    }
+
     public static int birthdayCakeCandles(List<Integer> candles) {
         // Write your code here
         int noOfCandles = 0;
@@ -305,7 +350,7 @@ public class HackerRank {
         return map;
     }
 
-    private static Map<String, Integer> mostRepeatedWordSorted(String sentence) {
+    private static Map<String, Integer> mostRepeatedWordsSorted(String sentence) {
         Map<String, Integer> map = new HashMap<>();
         String pattern = "[^a-zA-Z0-9\\s]";
         sentence = sentence.replaceAll("\\s+", " ");
@@ -798,15 +843,305 @@ public class HackerRank {
         return output;
     }
 
+    public static int countEqualStrings(String a, String b) {
+        // Java program to print the number of times
+        // str2 can be formed from str1 using the
+        // characters of str1 only once
+        Map<Character, Integer> map = new HashMap<>();
+        int count = 0;
+        int charsNumber = 0;
+        for (int i = 0; i < b.length(); i++) {
+            if (map.containsKey(b.charAt(i))) {
+                map.put(b.charAt(i), map.get(b.charAt(i)) + 1);
+            } else {
+                map.put(b.charAt(i), 1);
+            }
+        }
 
-    public static void main(String[] args) {
+        for (int i = 0; i < a.length(); i++) {
+            if (map.containsKey(a.charAt(i))) {
+                charsNumber++;
+                if (count == 0 || map.get(a.charAt(i)) < count) {
+                    count = map.get(a.charAt(i));
+                    if (map.get(a.charAt(i)) > 1) {
+                        map.put(a.charAt(i), map.get(a.charAt(i)) - 1);
+                    } else {
+                        map.remove(a.charAt(i));
+                    }
+                }
+            }
+        }
+        return charsNumber == a.length() ? count : 0;
+    }
 
-        ArrayList<Map.Entry<String, Integer>> list = new ArrayList<>();
+    public int firstUniqChar(String input) {
+        ///dddccdbba
+        //more memoty than below's solutions due to linkedhashmap.
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            if (map.containsKey(input.charAt(i))) {
+                map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
+            } else {
+                map.put(input.charAt(i), 1);
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return input.indexOf(entry.getKey());
+            }
+        }
+        return -1;
+    }
+
+    public int firstUniqueChar(String input) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            if (map.containsKey(input.charAt(i))) {
+                map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
+            } else {
+                map.put(input.charAt(i), 1);
+            }
+        }
+
+        for (int i = 0; i < input.length(); i++) {
+            if (map.get(input.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    public char findFirstNonRepeatedChar(String input) {
+        //O(2*n)
+        //O(n^2)
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            if (map.containsKey(input.charAt(i))) {
+                map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
+            } else {
+                map.put(input.charAt(i), 1);
+            }
+        }
+
+        //map.g
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+        return '\u0000';
+    }
+
+    public char firstNonRepeatingChar(String word) {
+        Set<Character> repeating = new HashSet<>();
+        List<Character> nonRepeating = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
+            char letter = word.charAt(i);
+            if (repeating.contains(letter)) {
+                continue;
+            }
+            if (nonRepeating.contains(letter)) {
+                nonRepeating.remove((Character) letter);
+                repeating.add(letter);
+            } else {
+                nonRepeating.add(letter);
+            }
+        }
+        return nonRepeating.get(0);
+    }
+
+    public int countWords(String input, String word) {
+        int count = 0;
+        String[] arr = input.split(" ");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals(word))
+                count++;
+        }
+        return count;
+    }
+
+    public long countSpecificWordsStream(String input, String word) {
+        if ((Objects.nonNull(word) && !(" ").equals(word)) && (Objects.nonNull(input) && !(" ").equals(input))) {
+            String[] sArray = input.split(" ");
+            long l = Arrays.stream(sArray).filter(d -> d.equals(word)).count();
+            System.out.println(word + " occur " + l + " times");
+            return l;
+        } else {
+            System.out.println("Invalid string");
+            return 0;
+        }
+    }
+
+    public int countWordsWNoMethod(String input) {
+        String pattern = "[^a-zA-Z0-9\\s]";
+        input = input.replaceAll(pattern, "");
+        input = input.replaceAll("\\s+", " ");
+        char[] chars = input.toCharArray();
+        int counter = 1;
+
+        for (char aChar : chars) {
+            if (!Character.isLetter(aChar)) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int countWordsWNoMethod2(String input) {
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
+        //sentence = "Hello              :,!!!!!  this is a sentence. Because I want to test this method.";
+        int wordCount = 0;
+        boolean isWord = false;
+        int endOfLine = input.length() - 1;
+        char[] characters = input.toCharArray();
+
+        for (int i = 0; i < characters.length; i++) {
+            if (Character.isLetter(characters[i]) && i != endOfLine) {
+                isWord = true;
+            } else if (!Character.isLetter(characters[i]) && isWord) {
+                isWord = false;
+                wordCount++;
+            } else if (Character.isLetter(characters[i]) && i == endOfLine) {
+                wordCount++;
+            }
+        }
+        return wordCount;
+    }
+
+    public int romanToInteger2(String s) {
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        int total = 0;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                total -= map.get(s.charAt(i));
+            } else {
+                total += map.get(s.charAt(i));
+            }
+        }
+        total += map.get(s.charAt(s.length() - 1));
+        return total;
+    }
+
+    public int romanToInteger(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        int counter = 0;
+        char[] chars = str.toCharArray();
+
+        for (int i = 0; i < chars.length; i++) {
+            if ((i + 1 < chars.length) && (chars[i] == 'I' || chars[i] == 'X' || chars[i] == 'C')) {
+                switch (chars[i]) {
+                    case 'I':
+                        if (chars[i + 1] == 'V') {
+                            counter += 4;
+                            if (i + 1 < chars.length) i++;
+                        } else if (chars[i + 1] == 'X') {
+                            counter += 9;
+                            if (i + 1 < chars.length) i++;
+                        } else {
+                            counter += map.get(chars[i]);
+                        }
+                        break;
+
+                    case 'X':
+                        if (chars[i + 1] == 'L') {
+                            counter += 40;
+                            if (i + 1 < chars.length) i++;
+                        } else if (chars[i + 1] == 'C') {
+                            counter += 90;
+                            if (i + 1 < chars.length) i++;
+                        } else {
+                            counter += map.get(chars[i]);
+                        }
+                        break;
+
+                    case 'C':
+                        if (chars[i + 1] == 'D') {
+                            counter += 400;
+                            if (i + 1 < chars.length) i++;
+                        } else if (chars[i + 1] == 'M') {
+                            counter += 900;
+                            if (i + 1 < chars.length) i++;
+                        } else {
+                            counter += map.get(chars[i]);
+                        }
+                        break;
+                }
+            } else {
+                counter += map.get(chars[i]);
+            }
+        }
+        return counter;
+    }
+
+    public Map<Character, Integer> findDuplicateCharacters3(String input) {
+        char[] chars = input.toCharArray();
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        for (char aChar : chars) {
+            if (!map.containsKey(aChar)) {
+                map.put(aChar, 1);
+            } else {
+                map.put(aChar, map.get(aChar) + 1);
+            }
+        }
+        return map;
+    }
+
+    public Map<Character, Integer> findDuplicateCharacters2(String input) {
+        Map<Character, Integer> map = new HashMap<>();
+        int count = 1;
+        char[] chars = input.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (!map.containsKey(chars[i])) {
+                for (int j = i + 1; j < chars.length; j++) {
+                    if (chars[i] == chars[j]) {
+                        count++;
+                    }
+                }
+                map.put(chars[i], count);
+                count = 1;
+            }
+        }
+        return map;
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+//        for(int i=0; i<3; i++){
+//            MultiThreadExample t1 = new MultiThreadExample(i);
+//            Thread myThread = new Thread(t1);
+//            myThread.start();
+//            myThread.join();//Waits for this thread to die.
+//        }
 
         testMethod();
     }
 
     private static void testMethod() {
+//        System.out.println(countEqualStrings("ab", "abcbcb")); //-> 1
+//        System.out.println(countEqualStrings("abc", "abccba")); //-> 2
+//        System.out.println(countEqualStrings("peers", "foreerspersep")); //-> 2
+//        System.out.println(countEqualStrings("abc", "jkloa")); //-> 0
+//        System.out.println(countEqualStrings("mary", "army")); //-> 1
+        System.out.println(countEqualStrings("geeks", "geksforgks")); //0
 //        System.out.println(missingNumber(new int[]{1, 2, 3, 4, 6}));
 //        System.out.println(missingNumber(new int[]{1,2,3,4,6,7,9,8,10}));
 //        System.out.println(missingNumber(new int[]{1,2,3,4,6,9,8}));
@@ -910,7 +1245,7 @@ public class HackerRank {
 //        System.out.println(checkIfPalindrome("Amore, Roma"));
 //        System.out.println(checkIfPalindrome("Yo, banana boy!"));
 //        System.out.println(checkIfPalindrome("Dammit, I'm mad!"));
-        System.out.println(mostRepeatedWordSorted("Hello, my name          is Carlos. Carlos is           my name and work as a developer. Carlos is a developer."));
+        //System.out.println(mostRepeatedWordsSorted("Hello, my name          is Carlos. Carlos is           my name and work as a developer. Carlos is a developer."));
         //System.out.println(isBalanced("{(([])[])[]]}"));
         //System.out.println(matchingParentheses("{(])}"));
 //        System.out.println(matchingParentheses("{[(])}"));

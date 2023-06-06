@@ -347,6 +347,92 @@ public class CodeExamples {
         return true;
     }
 
+    public static void insertionSort(){
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for(int firstUnsortedIndex = 1;
+            firstUnsortedIndex < intArray.length;
+            firstUnsortedIndex++){
+            int newElement = intArray[firstUnsortedIndex];
+            int i;
+            for(i = firstUnsortedIndex; i > 0 && intArray[i-1] > newElement; i--){
+                intArray[i] = intArray[i-1];
+            }
+            intArray[i] = newElement;
+        }
+
+        for(int i=0; i<intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+    }
+
+    public static void selectionSort(){
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for(int lastUnsortedIndex = intArray.length - 1;
+            lastUnsortedIndex > 0;
+            lastUnsortedIndex--
+        ){
+            int largest = 0;
+            for(int i=1; i<=lastUnsortedIndex; i++){ //always initializes at 1.
+                if(intArray[i] > intArray[largest]){
+                    largest = i;
+                }
+                swap(intArray, largest, lastUnsortedIndex);
+            }
+        }
+        for(int i=0; i<intArray.length; i++){
+            System.out.println(intArray[i]);
+        }
+    }
+
+    public static void bubbleSort(){
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        //int i=0; i < intArray.length; i++
+        for (int lastUnsortedIndex = intArray.length - 1; //because the last one is the sorted one.
+             lastUnsortedIndex > 0; //until iterator doesn't decrease to 0.
+             lastUnsortedIndex-- //subtract one in each iteration.
+        ){
+            for(int i=0; i<lastUnsortedIndex; i++){
+                if(intArray[i] > intArray[i+1]){
+                    swap(intArray, i, i+1);
+                }
+            }
+        }
+
+        for(int i=0; i<intArray.length; i++){
+            System.out.println(intArray[i]);
+        }
+    }
+
+    public static void bubbleSort2(){
+        int[] array = { 20, 35, -15, 7, 55, 1, -22 };
+        int aux = 0;
+        for(int i=0; i<array.length; i++){
+            for(int j=i+1; j<array.length; j++){
+                if(array[i] > array[j]){
+                    aux = array[i];
+                    array[i] = array[j];
+                    array[j] = aux;
+                }
+            }
+        }
+        for(int i=0; i<array.length; i++){
+            System.out.println(array[i]);
+        }
+    }
+
+    //static because doesn't need an instance and is called from a static method.
+    public static void swap(int[] array, int i, int j){
+        if(i == j){
+            return;
+        }
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
 
 
 
