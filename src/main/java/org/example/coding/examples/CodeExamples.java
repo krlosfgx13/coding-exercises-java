@@ -2,18 +2,23 @@ package org.example.coding.examples;
 
 import org.example.coding.oop.ObjectOrientedProgExercises;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CodeExamples {
+public class CodeExamples extends  Thread{
 
-    public static void main(String[] args){
-        int[] arr = {5,4,2, 1};
-        printValues(arr);
-        System.out.println("------------------");
-        printValues2(arr);
+    public static void main(String[] args) throws SQLException, InterruptedException {
+//        try {
+//            thread2.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private static void printValues(int arr[]){
@@ -260,7 +265,8 @@ public class CodeExamples {
         p3.setAge(LocalDate.now().getYear() - p3.getBirthDate().getYear());
         p4.setAge(LocalDate.now().getYear() - p4.getBirthDate().getYear());
 
-        List<Person> adults = persons.stream().filter((Person per) -> per.getAge() > 21).collect(Collectors.toList());
+        //List<Person> adults = persons.stream().filter((Person per) -> per.getAge() > 21).collect(Collectors.toList());
+        List<Person> adults = persons.stream().filter(per -> per.getAge() > 21).collect(Collectors.toList());
         for (Person p : adults) {
             System.out.println(p.getLastName() + ", " + p.getFirstName() + ", " + p.getAge());
         }
@@ -311,7 +317,6 @@ public class CodeExamples {
         map.put("g", 70);
         map.put("h", 80);
         System.out.println(map);
-
     }
 
     public void evenOrOddNumbers(int limit) {

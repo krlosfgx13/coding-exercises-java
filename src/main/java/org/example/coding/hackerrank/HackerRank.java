@@ -130,6 +130,24 @@ public class HackerRank {
         return s.substring(0, 8);
     }
 
+    public static int diagonalDifference(List<List<Integer>> arr) {
+        // Write your code here
+        int res1 = 0;
+        int res2 = 0;
+        for(int i=0; i<arr.size(); i++){
+            res1 += arr.get(i).get(i);
+        }
+
+        int counter = arr.size()-1;
+        for(int i=0; i<arr.size(); i++){
+            res2 += arr.get(i).get(counter);
+            counter--;
+        }
+
+        int result = Math.abs(res1 - res2);
+        return result;
+    }
+
     public static List<Integer> gradingStudents(List<Integer> grades) {
         // Write your code here
         List<Integer> list = new ArrayList<>();
@@ -348,6 +366,30 @@ public class HackerRank {
             }
         }
         return map;
+    }
+
+    public static boolean isValidCreditCard(String cardNumber) {
+        // Write your code here
+        String regex = "[^0-9]";
+        cardNumber = cardNumber.replaceAll(regex, "");
+        cardNumber = cardNumber.replaceAll(" ", "");
+        cardNumber = cardNumber.replaceAll("-", "");
+        System.out.println(cardNumber);
+        int sum = 0;
+        int current = 0;
+        for(int i=cardNumber.length()-1; i>=0; i--){
+            current = Character.getNumericValue(cardNumber.charAt(i));
+            if(i %2 ==0){
+                current = Character.getNumericValue((cardNumber.charAt(i)));
+                current *= 2;
+                if(current > 9){
+                    current -= 9;
+                }
+            }
+            sum += current;
+        }
+        System.out.println(sum);
+        return sum % 10 == 0;
     }
 
     private static Map<String, Integer> mostRepeatedWordsSorted(String sentence) {
@@ -1125,14 +1167,17 @@ public class HackerRank {
 
 
     public static void main(String[] args) throws InterruptedException {
-//        for(int i=0; i<3; i++){
+
+        String str = "55555444";
+        System.out.println(Character.getNumericValue(str.charAt(2)));
+        //        for(int i=0; i<3; i++){
 //            MultiThreadExample t1 = new MultiThreadExample(i);
 //            Thread myThread = new Thread(t1);
 //            myThread.start();
 //            myThread.join();//Waits for this thread to die.
 //        }
 
-        testMethod();
+        //testMethod();
     }
 
     private static void testMethod() {
