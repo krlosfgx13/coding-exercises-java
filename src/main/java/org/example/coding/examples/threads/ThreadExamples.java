@@ -14,8 +14,8 @@ public class ThreadExamples {
     /*
     * Scenarios:
     * Scenario 1: There is no order guaranteed, any of the three threads can be executed first. (t1, t2 and main).
-      Thread t1 = new Thread(ThreadExamples::Test1);
-      Thread t2 = new Thread(ThreadExamples::Test2);
+      Thread thread1 = new Thread(ThreadExamples::Test1);
+      Thread thread2 = new Thread(ThreadExamples::Test2);
       thread1.setName("Thread #1");
       thread2.setName("Thread #2");
       thread1.start();
@@ -63,8 +63,44 @@ public class ThreadExamples {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
         //Method call goes here.
-        example1();
-        //example2();
+        double start = System.currentTimeMillis();
+        evenNumbersSum();
+        oddNumbersSum();
+        double duration = ((System.currentTimeMillis() - start) / 1000); //remove /1000 for milliseconds.
+        System.out.println("Process took: " + duration + " secs.");
+
+        start = System.currentTimeMillis();
+        Thread thread1 = new Thread(ThreadExamples::evenNumbersSum);
+        Thread thread2 = new Thread(ThreadExamples::oddNumbersSum);
+        thread1.setName("Thread #1");
+        thread2.setName("Thread #2");
+        thread1.start();
+        thread2.start();
+        duration = ((System.currentTimeMillis() - start) / 1000); //remove /1000 for milliseconds.
+        System.out.println("Process took: " + duration + " secs.");
+    }
+
+    public static void evenNumbersSum() {
+        double sum = 0;
+
+        for (int i = 0; i < 500000000; i++) {
+            if (i % 2 == 0) {
+                sum = sum + 1;
+            }
+        }
+        System.out.println("Sum of even numbers: " + sum);
+    }
+
+
+    public static void oddNumbersSum() {
+        double sum = 0;
+
+        for (int i = 0; i < 500000000; i++) {
+            if (i % 2 == 1) {
+                sum++;
+            }
+        }
+        System.out.println("Sum of odds numbers: " + sum);
     }
 
     private static void example1() throws InterruptedException {
@@ -106,6 +142,7 @@ public class ThreadExamples {
         thread1.join();
         thread2.start();
     }
+
     private static Connection getConnection() throws SQLException {
         DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
         return DriverManager.getConnection(MSSQL_CONNECTION_STRING,
@@ -117,7 +154,7 @@ public class ThreadExamples {
         conn.setAutoCommit(false);
         String insertStatement = "INSERT INTO THREAD_TEST(DESCRIPTION, CORRELATIVE) VALUES(?, ?)";
         PreparedStatement ps = conn.prepareStatement(insertStatement);
-        for(int i=1; i<=10000; i++){
+        for (int i = 1; i <= 10000; i++) {
             ps.setString(1, "Inserted from Thread #1.");
             ps.setInt(2, i);
             ps.executeUpdate();
@@ -128,19 +165,19 @@ public class ThreadExamples {
 
     private static void ThreadDbTest1() throws SQLException {
         double start = System.currentTimeMillis();
-        try{
+        try {
             Connection conn = getConnection();
             conn.setAutoCommit(false);
             String insertStatement = "INSERT INTO THREAD_TEST(DESCRIPTION, CORRELATIVE) VALUES(?, ?)";
             PreparedStatement ps = conn.prepareStatement(insertStatement);
-            for(int i=1; i<=5000; i++){
+            for (int i = 1; i <= 5000; i++) {
                 ps.setString(1, "Inserted from Thread #1.");
                 ps.setInt(2, i);
                 ps.executeUpdate();
                 conn.commit();
             }
             System.out.println("Process finished successfully.");
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         double duration = ((System.currentTimeMillis() - start) / 1000); //remove /1000 for milliseconds.
@@ -149,19 +186,19 @@ public class ThreadExamples {
 
     private static void ThreadDbTest2() throws SQLException {
         double start = System.currentTimeMillis();
-        try{
+        try {
             Connection conn = getConnection();
             conn.setAutoCommit(false);
             String insertStatement = "INSERT INTO THREAD_TEST(DESCRIPTION, CORRELATIVE) VALUES(?, ?)";
             PreparedStatement ps = conn.prepareStatement(insertStatement);
-            for(int i=5001; i<=10000; i++){
+            for (int i = 5001; i <= 10000; i++) {
                 ps.setString(1, "Inserted from Thread #2.");
                 ps.setInt(2, i);
                 ps.executeUpdate();
                 conn.commit();
             }
             System.out.println("Process finished successfully.");
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         double duration = ((System.currentTimeMillis() - start) / 1000); //remove /1000 for milliseconds.
